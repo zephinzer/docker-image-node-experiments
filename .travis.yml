@@ -1,0 +1,53 @@
+services:
+  - docker
+stages:
+  - build
+before_script:
+  - docker login -u  $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD;
+after_script:
+  - docker logout
+jobs:
+  include: # <codename>-<node_version>, <build_version>-<codename>, latest-<codename>
+    - stage: build
+      env:
+        - TAG=node-4x-centos-7
+      script:
+        - docker build -f node/4.x.Centos7.Dockerfile -t ${TAG} node/4.x.Centos7.Dockerfile;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
+    - stage: build
+      env:
+        - TAG=node-6x-centos-7
+      script:
+        - docker build -f node/6.x.Centos7.Dockerfile -t ${TAG} node/6.x.Centos7.Dockerfile;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
+    - stage: build
+      env:
+        - TAG=node-8x-centos-7
+      script:
+        - docker build -f node/8.x.Centos7.Dockerfile -t ${TAG} node/8.x.Centos7.Dockerfile;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
+    - stage: build
+      env:
+        - TAG=node-4x-alpine-7
+      script:
+        - docker build -f node/4.x.Alpine3.4.Dockerfile -t ${TAG} node/4.x.Alpine3.4.Dockerfile;
+        - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
+        - docker push      zephinzer/docker-experiments:${TAG};
+        
+    - stage: build
+      env:
+        - TAG=node-6x-alpine-7
+      script:
+        - docker build -f node/6.x.Alpine3.4.Dockerfile -t ${TAG} node/6.x.Alpine3.4.Dockerfile;
+        - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
+        - docker push      zephinzer/docker-experiments:${TAG};
+    - stage: build
+      env:
+        - TAG=node-8x-alpine-7
+      script:
+        - docker build -f node/8.x.Alpine3.4.Dockerfile -t ${TAG} node/8.x.Alpine3.4.Dockerfile;
+        - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
+        - docker push      zephinzer/docker-experiments:${TAG};
