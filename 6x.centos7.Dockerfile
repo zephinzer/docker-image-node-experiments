@@ -1,4 +1,4 @@
-FROM centos/centos:7
+FROM centos:7
 LABEL maintainer="dev@joeir.net" \
       version="1.0.0" \
       description="CentOS 7 container with custom built Node Argon LTS"
