@@ -1,7 +1,7 @@
 FROM centos:7
 LABEL maintainer="dev@joeir.net" \
       version="1.0.0" \
-      description="CentOS 7 container with custom built Node Argon LTS"
+      description="CentOS 7 container with custom built Node Carbon LTS"
 ENV INSTALL_PATH=/tmp
 ENV YUM_TO_INSTALL="bash curl gcc g++ make python linux-headers binutils-gold libstdc++ gnupg"
 ENV YUM_TO_REMOVE="bash curl gcc g++ make python binutils-gold gnupg"
@@ -88,7 +88,7 @@ RUN printf "${FONT_BOLD}${FONT_GREEN} \n\
       56730D5401028683275BD23C23EFEFE93C4CFFFE && \
     curl -sSL ${NODE_URL} -o ${NODE_INSTALL_PATH} && \
     curl -sSL ${NODE_GPG_URL} -o ${NODE_INSTALL_GPG_PATH} && \
-    grep ${NODE_INSTALL_PATH} ${NODE_INSTALL_GPG_PATH} | sha256sum -c - && \
+    gpg --verify ${NODE_INSTALL_GPG_PATH} ${NODE_INSTALL_PATH} && \
     tar -xf ${NODE_INSTALL_PATH} -C ${INSTALL_PATH} && \
     cd ${NODE_INSTALL_DIR} && \
     ./configure ${NODE_BUILD_FLAGS} && \
