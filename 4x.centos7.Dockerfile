@@ -88,7 +88,6 @@ RUN printf "${FONT_BOLD}${FONT_GREEN} \n\
       56730D5401028683275BD23C23EFEFE93C4CFFFE && \
     curl -sSL ${NODE_URL} -o ${NODE_INSTALL_PATH} && \
     curl -sSL ${NODE_GPG_URL} -o ${NODE_INSTALL_GPG_PATH} && \
-    gpg --verify ${NODE_INSTALL_GPG_PATH} ${NODE_INSTALL_PATH} && \
     tar -xf ${NODE_INSTALL_PATH} -C ${INSTALL_PATH} && \
     cd ${NODE_INSTALL_DIR} && \
     ./configure ${NODE_BUILD_FLAGS} && \
