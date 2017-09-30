@@ -64,3 +64,30 @@ jobs:
         - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
         - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
         - docker push      zephinzer/node-experiments:${TAG};
+    - stage: build
+      env:
+        - NODE=4x
+        - OS=ubuntu16-04
+      script:
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
+    - stage: build
+      env:
+        - NODE=6x
+        - OS=ubuntu16-04
+      script:
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
+    - stage: build
+      env:
+        - NODE=8x
+        - OS=ubuntu16-04
+      script:
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
