@@ -12,44 +12,55 @@ jobs:
   include: # <codename>-<node_version>, <build_version>-<codename>, latest-<codename>
     - stage: build
       env:
-        - TAG=node-4x-centos-7
+        - NODE=4x
+        - OS=centos7
       script:
-        - docker build -f 4.x.Centos7.Dockerfile -t ${TAG} .;
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
         - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
         - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
-        - TAG=node-6x-centos-7
+        - NODE=6x
+        - OS=centos7
       script:
-        - docker build -f 6.x.Centos7.Dockerfile -t ${TAG} .;
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
         - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
         - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
-        - TAG=node-8x-centos-7
+        - NODE=8x
+        - OS=centos7
       script:
-        - docker build -f 8.x.Centos7.Dockerfile -t ${TAG} .;
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
         - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
         - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
-        - TAG=node-4x-alpine-7
+        - NODE=4x
+        - OS=alpine3-4
       script:
-        - docker build -f 4.x.Alpine3.4.Dockerfile -t ${TAG} 4..;
-        - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
-        - docker push      zephinzer/docker-experiments:${TAG};
-        
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
-        - TAG=node-6x-alpine-7
+        - NODE=6x
+        - OS=alpine3-4
       script:
-        - docker build -f 6.x.Alpine3.4.Dockerfile -t ${TAG} 6..;
-        - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
-        - docker push      zephinzer/docker-experiments:${TAG};
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
-        - TAG=node-8x-alpine-7
+        - NODE=8x
+        - OS=alpine3-4
       script:
-        - docker build -f 8.x.Alpine3.4.Dockerfile -t ${TAG} 8..;
-        - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
-        - docker push      zephinzer/docker-experiments:${TAG};
+        - TAG=${NODE}-${OS}
+        - docker build -f ${NODE}.${OS}.Dockerfile -t ${TAG} .;
+        - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
+        - docker push      zephinzer/node-experiments:${TAG};
