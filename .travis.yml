@@ -1,3 +1,5 @@
+sudo: required
+language: bash
 services:
   - docker
 stages:
@@ -12,28 +14,28 @@ jobs:
       env:
         - TAG=node-4x-centos-7
       script:
-        - docker build -f node/4.x.Centos7.Dockerfile -t ${TAG} node/4.x.Centos7.Dockerfile;
+        - docker build -f 4.x.Centos7.Dockerfile -t ${TAG} .;
         - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
         - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
         - TAG=node-6x-centos-7
       script:
-        - docker build -f node/6.x.Centos7.Dockerfile -t ${TAG} node/6.x.Centos7.Dockerfile;
+        - docker build -f 6.x.Centos7.Dockerfile -t ${TAG} .;
         - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
         - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
         - TAG=node-8x-centos-7
       script:
-        - docker build -f node/8.x.Centos7.Dockerfile -t ${TAG} node/8.x.Centos7.Dockerfile;
+        - docker build -f 8.x.Centos7.Dockerfile -t ${TAG} .;
         - docker tag ${TAG}  zephinzer/node-experiments:${TAG};
         - docker push      zephinzer/node-experiments:${TAG};
     - stage: build
       env:
         - TAG=node-4x-alpine-7
       script:
-        - docker build -f node/4.x.Alpine3.4.Dockerfile -t ${TAG} node/4.x.Alpine3.4.Dockerfile;
+        - docker build -f 4.x.Alpine3.4.Dockerfile -t ${TAG} 4..;
         - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
         - docker push      zephinzer/docker-experiments:${TAG};
         
@@ -41,13 +43,13 @@ jobs:
       env:
         - TAG=node-6x-alpine-7
       script:
-        - docker build -f node/6.x.Alpine3.4.Dockerfile -t ${TAG} node/6.x.Alpine3.4.Dockerfile;
+        - docker build -f 6.x.Alpine3.4.Dockerfile -t ${TAG} 6..;
         - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
         - docker push      zephinzer/docker-experiments:${TAG};
     - stage: build
       env:
         - TAG=node-8x-alpine-7
       script:
-        - docker build -f node/8.x.Alpine3.4.Dockerfile -t ${TAG} node/8.x.Alpine3.4.Dockerfile;
+        - docker build -f 8.x.Alpine3.4.Dockerfile -t ${TAG} 8..;
         - docker tag ${TAG}  zephinzer/docker-experiments:${TAG};
         - docker push      zephinzer/docker-experiments:${TAG};
